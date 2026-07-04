@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amon | Independent Quantum Research Engineer (PQC/QKD · QML)</title>
+    <meta name="description" content="Independent Quantum Research Engineer & IBM Qiskit Advocate — crypto-agile, quantum-safe PoCs & tools (QSMPC, PQC-QKD, MPC/FHE), QML/QRC and tensor networks. Open to contract R&D & advisory.">
+    <meta name="keywords" content="Quantum Research Engineer, Post-Quantum Cryptography, PQC, QKD, QSMPC, MPC, FHE, crypto-agility, QML, Quantum Machine Learning, Tensor Networks, PennyLane, Qiskit, Qiskit Advocate, Quantum Reservoir Computing">
+    <meta property="og:title" content="Amon | Independent Quantum Research Engineer — PQC/QKD, QSMPC, QML">
+    <meta property="og:description" content="Crypto-agile, quantum-safe PoCs & tools (QSMPC · PQC-QKD · MPC/FHE), QML/QRC & tensor networks. IBM Qiskit Advocate. Open to contract R&D & advisory.">
+    <meta property="og:type" content="website">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --gradient-2: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            --gradient-3: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+        }
+
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .particle {
+            position: absolute; width: 4px; height: 4px;
+            background: var(--primary); border-radius: 50%; opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+
+        .logo {
+            font-size: 1.5rem; font-weight: 700;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-weight: 500;
+            transition: color 0.3s; position: relative;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--gradient-1); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu { display: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
+
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 6rem 2rem 4rem; text-align: center;
+        }
+        .hero-content { max-width: 900px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.25rem; background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 50px;
+            color: var(--accent); font-size: 0.95rem; font-weight: 600;
+            margin-bottom: 1.5rem; animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .hero-description { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; }
+        .hero-buttons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; }
+        .stat { text-align: center; padding: 1rem; }
+        .stat-value {
+            font-size: 2.5rem; font-weight: 700;
+            background: var(--gradient-2); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.875rem 1.75rem; border-radius: 12px; font-weight: 500;
+            text-decoration: none; transition: all 0.3s ease;
+            border: none; cursor: pointer; font-size: 1rem;
+        }
+        .btn-primary { background: var(--gradient-1); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
+        .btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--primary); transform: translateY(-3px); }
+
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; position: relative; display: inline-block; }
+        .section-header h2::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 4px; background: var(--gradient-1); border-radius: 2px;
+        }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 1.5rem auto 0; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .skill-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease;
+        }
+        .skill-card:hover {
+            background: var(--bg-card-hover); transform: translateY(-5px);
+            border-color: var(--primary); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
+        }
+        .skill-card h3 {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1rem; color: var(--primary); font-size: 1.1rem;
+        }
+        .skill-card h3 i {
+            font-size: 1.3rem; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(99, 102, 241, 0.1); border-radius: 10px;
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag {
+            padding: 0.4rem 0.8rem; background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 8px;
+            font-size: 0.85rem; color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace; transition: all 0.2s;
+        }
+        .skill-tag:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--primary); }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 20px; overflow: hidden; transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px); border-color: var(--secondary);
+            box-shadow: 0 25px 50px rgba(14, 165, 233, 0.15);
+        }
+        .project-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .project-header h3 { font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .project-date { color: var(--text-muted); font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+        .project-body { padding: 1.5rem; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .tech-badge {
+            padding: 0.3rem 0.7rem; background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 6px;
+            font-size: 0.75rem; color: var(--secondary); font-family: 'JetBrains Mono', monospace;
+        }
+        .project-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.7; }
+        .project-highlights { list-style: none; }
+        .project-highlights li {
+            position: relative; padding-left: 1.5rem; margin-bottom: 0.6rem;
+            color: var(--text-muted); font-size: 0.9rem;
+        }
+        .project-highlights li::before { content: '▸'; position: absolute; left: 0; color: var(--primary); }
+        .project-metric {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1rem; background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px;
+            margin-top: 1rem; font-size: 0.9rem; color: var(--success); font-weight: 500;
+        }
+
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: var(--gradient-1);
+        }
+        .timeline-item { position: relative; padding-bottom: 2rem; padding-left: 2rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2rem; top: 0.5rem;
+            width: 12px; height: 12px; background: var(--primary);
+            border-radius: 50%; border: 3px solid var(--bg-dark);
+        }
+        .timeline-item h4 { color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .timeline-item .company { color: var(--primary); font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .timeline-item .date { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
+        .timeline-item p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .cert-card {
+            display: flex; align-items: center; gap: 1rem; padding: 1.25rem;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; transition: all 0.3s ease;
+        }
+        .cert-card:hover { background: var(--bg-card-hover); border-color: var(--primary); transform: translateX(5px); }
+        .cert-icon {
+            width: 50px; height: 50px; min-width: 50px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gradient-1); border-radius: 12px; font-size: 1.3rem; color: white;
+        }
+        .cert-icon.gold { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+        .cert-info h4 { font-size: 0.95rem; margin-bottom: 0.25rem; color: var(--text-primary); }
+        .cert-info p { color: var(--text-muted); font-size: 0.8rem; }
+
+        .hardware-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 20px; padding: 2.5rem; text-align: center;
+            max-width: 700px; margin: 0 auto; position: relative; overflow: hidden;
+        }
+        .hardware-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; background: var(--gradient-1);
+        }
+        .hardware-icon {
+            font-size: 4rem; margin-bottom: 1rem;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hardware-card h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .hardware-card > p { color: var(--text-muted); margin-bottom: 2rem; }
+        .hardware-specs { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+        .spec {
+            text-align: center; padding: 1rem;
+            background: rgba(99, 102, 241, 0.05); border-radius: 12px; min-width: 100px;
+        }
+        .spec-value { font-size: 1.4rem; font-weight: 700; color: var(--secondary); font-family: 'JetBrains Mono', monospace; }
+        .spec-label { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem; }
+
+        .contact-section {
+            text-align: center; padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        .contact-buttons { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+        footer {
+            text-align: center; padding: 2rem; border-top: 1px solid var(--border);
+            color: var(--text-muted); font-size: 0.9rem;
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .hero-stats { gap: 1.5rem; }
+            .stat-value { font-size: 2rem; }
+            .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+            .hardware-specs { gap: 1rem; }
+            section { padding: 3rem 1rem; }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><span class="logo-icon">&#x269b;</span> Amon.QC</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fab fa-ibm"></i>
+                IBM Qiskit Advocate (Feb 2026)
+            </div>
+            <div class="hero-badge" style="animation-delay: 0.5s;">
+                <i class="fas fa-trophy"></i>
+                Yale Peaked Hackathon 2026 #13/550 | QPoland 2025 QML Runner-Up | Q-volution 3rd Place
+            </div>
+            <h1>Independent Quantum Research Engineer</h1>
+            <p class="hero-subtitle">Post-Quantum Crypto (PQC/QKD) · QML &amp; Tensor Networks · crypto-agile, quantum-safe PoCs &amp; tools · IBM Qiskit Advocate</p>
+            <p class="hero-description">
+                I build crypto-agile, quantum-safe research proofs-of-work. Flagship: QSMPC·QKD·QHE·AI —
+                a browser-runnable quantum-safe hybrid orchestration layer (QKD → QSMPC → QHE/FHE →
+                privacy-preserving AI) across 5 industry use cases. Post-quantum cryptography, MPC/FHE,
+                QML/QRC and tensor-network methods, with reproducible benchmarks. Open to contract R&amp;D,
+                PoC development &amp; advisory.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+                <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Contact Me</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">8+</div>
+                    <div class="stat-label">QML Algorithms</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Major Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">96GB</div>
+                    <div class="stat-label">GPU VRAM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">12+</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <h2>Technical Skills</h2>
+            <p>Comprehensive expertise across quantum computing, cryptography, and machine learning</p>
+        </div>
+        <div class="skills-grid fade-in">
+            <div class="skill-card">
+                <h3><i class="fas fa-atom"></i> Quantum Frameworks</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PennyLane</span>
+                    <span class="skill-tag">IBM Qiskit</span>
+                    <span class="skill-tag">Perceval + MerLin</span>
+                    <span class="skill-tag">QURI Parts</span>
+                    <span class="skill-tag">OpenQASM</span>
+                    <span class="skill-tag">CUDA-Q / cuQuantum</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-brain"></i> QML Algorithms</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">VQC</span>
+                    <span class="skill-tag">QSVM</span>
+                    <span class="skill-tag">QNN</span>
+                    <span class="skill-tag">QCNN</span>
+                    <span class="skill-tag">QRNN</span>
+                    <span class="skill-tag">QGAN</span>
+                    <span class="skill-tag">QRC</span>
+                    <span class="skill-tag">Ego-QW</span>
+                    <span class="skill-tag">GQE-GPT</span>
+                    <span class="skill-tag">QPINN</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-shield-alt"></i> Cryptography</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">NIST PQC</span>
+                    <span class="skill-tag">ML-KEM</span>
+                    <span class="skill-tag">ML-DSA</span>
+                    <span class="skill-tag">FHE (TenSEAL/OpenFHE)</span>
+                    <span class="skill-tag">CKKS</span>
+                    <span class="skill-tag">MPC / 2PC</span>
+                    <span class="skill-tag">liboqs</span>
+                    <span class="skill-tag">QSMPC</span>
+                    <span class="skill-tag">crypto-agility</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-microchip"></i> GPU / HPC</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">CUDA</span>
+                    <span class="skill-tag">cuQuantum</span>
+                    <span class="skill-tag">NVIDIA RAPIDS</span>
+                    <span class="skill-tag">OpenCL</span>
+                    <span class="skill-tag">SYCL</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-robot"></i> ML / Deep Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Transformers</span>
+                    <span class="skill-tag">PyTorch Geometric</span>
+                    <span class="skill-tag">scikit-learn</span>
+                    <span class="skill-tag">GPT-2</span>
+                    <span class="skill-tag">PlasticityAI</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS Braket</span>
+                    <span class="skill-tag">IBM Cloud</span>
+                    <span class="skill-tag">Quandela Cloud</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">FastAPI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p>Cutting-edge quantum computing projects with real-world applications</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(16, 185, 129, 0.12) 100%);">
+                    <h3>&#x1F310; QSMPC &middot; QKD &middot; QHE &middot; AI &mdash; Quantum-Safe Hybrid Orchestration</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Jun 2026 - Present | Flagship PoW</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">ML-KEM-768 / ML-DSA-65</span>
+                        <span class="tech-badge">QKD (ETSI GS QKD 014)</span>
+                        <span class="tech-badge">FHE (TenSEAL/OpenFHE/HEonGPU)</span>
+                        <span class="tech-badge">MPC / 2PC</span>
+                        <span class="tech-badge">crypto-agility</span>
+                        <span class="tech-badge">MCP</span>
+                    </div>
+                    <p class="project-description">
+                        A browser-runnable quantum-safe orchestration layer chaining QKD &rarr; QSMPC &rarr; QHE/FHE &rarr; privacy-preserving AI on a PQC-first hybrid, across 5 industry use cases. The public demo runs entirely client-side with real, measured FHE/MPC (zero server compute).
+                    </p>
+                    <ul class="project-highlights">
+                        <li>5 use cases: finance AML (PSI), healthcare FL, genomics, telecom QML-IDS, satellite QSDC</li>
+                        <li>Crypto-agility registry &mdash; swap KEM/QKD/FHE/MPC at runtime (migration = config change)</li>
+                        <li>Agentic LLM over a quantum-safe MCP channel; ML-DSA-signed SHAP (EU AI Act Art. 13)</li>
+                        <li>116 tests passing; commercial-OK stack; every claim tied to a primary source</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-medal"></i>
+                        Flagship | 5 use cases | 116 tests | browser-only live demo
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(59, 130, 246, 0.12) 100%);">
+                    <h3><i class="fas fa-trophy" style="color: var(--accent);"></i> Peaked Circuit Sampling</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Apr 2026 | Yale Peaked Hackathon #13/550 (score 450 = 1st-tier)</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">OpenQASM</span>
+                        <span class="tech-badge">Qiskit</span>
+                        <span class="tech-badge">MPS / Tensor Networks</span>
+                        <span class="tech-badge">ZX-Calculus</span>
+                    </div>
+                    <p class="project-description">
+                        Bitstring recovery from peaked quantum circuits via an MPS-based marginal attack, with ZX-calculus + Qiskit PassManager preprocessing for near-term simulation feasibility (Team MerQury).
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Solved 9/10 peaked-circuit challenges up to 69 qubits</li>
+                        <li>MPS-based marginal attack for bitstring recovery</li>
+                        <li>ZX-calculus simplification + transpilation pipeline</li>
+                        <li>Ranked #13 / 550 teams (score 450 = top / 1st-tier)</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-medal"></i>
+                        #13 / 550 teams | up to 69 qubits | Yale Peaked 2026
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.1) 100%);">
+                    <h3><i class="fas fa-trophy" style="color: var(--accent);"></i> Swaption Pricing via Residual QRC</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Feb 2026 | Q-volution Hackathon 3rd Place</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">Quandela MerLin</span>
+                        <span class="tech-badge">Perceval</span>
+                        <span class="tech-badge">Quandela Cloud</span>
+                        <span class="tech-badge">PennyLane</span>
+                        <span class="tech-badge">Photonic QPU</span>
+                    </div>
+                    <p class="project-description">
+                        Novel Residual Quantum Reservoir Computing (QRC) architecture for swaption pricing on Quandela's photonic quantum platform. Benchmarked across 4 quantum architectures and 3 noise models.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Residual QRC beat classical baseline (RMSE 0.0432 vs 0.0437)</li>
+                        <li>Test RMSE 0.0088, R&sup2;=0.992 on AMF regulatory data</li>
+                        <li>QRC avoids barren plateaus (VQC RMSE 0.19 vs QRC 0.043)</li>
+                        <li>QPU noise resilience: Ascella &amp; Belenos noise models</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-medal"></i>
+                        R&sup2; = 0.992 | Girls In Quantum 3rd Place
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>&#x1F510; PQC-FHE Integration Platform</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Dec 2025 - Present</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">NIST FIPS 203/204/205</span>
+                        <span class="tech-badge">liboqs</span>
+                        <span class="tech-badge">FHE (OpenFHE/TenSEAL)</span>
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">K8s</span>
+                    </div>
+                    <p class="project-description">
+                        Enterprise platform integrating Post-Quantum Cryptography with Fully Homomorphic Encryption for quantum-safe, privacy-preserving ML inference.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>ML-KEM-768, ML-DSA-65, SLH-DSA implementation</li>
+                        <li>Hybrid key exchange (X25519 + ML-KEM)</li>
+                        <li>Chebyshev polynomial activation functions</li>
+                        <li>Healthcare, Financial, Blockchain, IoT demos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>&#x1F6F0; Satellite Network QML</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Dec 2025 - Present</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">Qiskit v2.2</span>
+                        <span class="tech-badge">RAPIDS cuML</span>
+                        <span class="tech-badge">CelesTrak</span>
+                    </div>
+                    <p class="project-description">
+                        Quantum K-means clustering for mega LEO satellite constellation analysis using SWAP Test distance calculation.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Starlink, OneWeb, Planet analysis</li>
+                        <li>GPU-accelerated classical comparison</li>
+                        <li>Multi-metric cluster evaluation</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-rocket"></i>
+                        89.8% Routing Time Reduction
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);">
+                    <h3><i class="fas fa-trophy" style="color: var(--accent);"></i> Quantum Graph Kernels for Molecular Classification</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Oct 2025 | QPoland Hackathon Runner-Up</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">QURI Parts</span>
+                        <span class="tech-badge">PyTorch Geometric</span>
+                        <span class="tech-badge">SVM</span>
+                        <span class="tech-badge">Trotterized QC</span>
+                    </div>
+                    <p class="project-description">
+                        Novel ego-graph quantum walk (Ego-QW) method using Trotterized quantum circuits for molecular property prediction, addressing near-term device scalability.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>96.5% accuracy on AIDS, 87.7% on MUTAG datasets</li>
+                        <li>Benchmarked vs classical SP &amp; WL kernels on 5 datasets</li>
+                        <li>10-fold stratified cross-validation evaluation</li>
+                        <li>Academic-quality research report delivered</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-medal"></i>
+                        96.5% Accuracy | QPoland Runner-Up
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>&#x1F916; GQE-GPT Circuit Generator</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Jan - Jul 2025</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">PennyLane</span>
+                        <span class="tech-badge">PyTorch</span>
+                        <span class="tech-badge">GPT-2</span>
+                        <span class="tech-badge">QPINN</span>
+                    </div>
+                    <p class="project-description">
+                        GPT-based quantum circuit generation with Quantum Physics-Informed Neural Networks for automated circuit design.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Circuit tokenization, GPT-2 generation, QML application</li>
+                        <li>Custom QPINN framework </li>
+                        <li>GQE with SPSA optimization</li>
+                        <li>Automated circuit design efficiency</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>&#x1F4CA; QML Benchmark Suite</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> May - Jun 2025</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">Qiskit 1.4.3</span>
+                        <span class="tech-badge">cuQuantum</span>
+                        <span class="tech-badge">IBM Quantum</span>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive benchmark implementing and comparing 6 major QML algorithms across CPU, GPU, and QPU backends.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>VQC, QSVM, QNN, QCNN, QRNN, QGAN</li>
+                        <li>Aer, cuQuantum GPU, IBM hardware tests</li>
+                        <li>Automated performance visualization</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-code-branch"></i>
+                        6 QML Algorithms Implemented
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header">
+            <h2>Professional Experience</h2>
+            <p>Building expertise across quantum computing, optimization, and infrastructure</p>
+        </div>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <h4>Independent Quantum Research Engineer</h4>
+                <p class="company">Self-employed</p>
+                <p class="date">2026 - Present</p>
+                <p>Building crypto-agile, quantum-safe research PoCs and tools. Flagship: QSMPC·QKD·QHE·AI — a browser-runnable quantum-safe hybrid orchestration layer (QKD → QSMPC → QHE/FHE → privacy-preserving AI) across 5 industry use cases; plus a PQC-QKD hybrid security layer. Available for contract R&D, PoC development & advisory (PQC migration, MPC/FHE, QML).</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Quantum Research Engineer</h4>
+                <p class="company">EQUES Inc.</p>
+                <p class="date">Apr 2026 - Jun 2026</p>
+                <p>Researched industrial use cases and PoC trends of quantum technologies across CAE, cryptography, materials and construction; authored research reports and technical decks (quantum cryptography × AI, quantum CAE ROI, quantum materials × AI).</p>
+            </div>
+            <div class="timeline-item">
+                <h4>IT Engineer</h4>
+                <p class="company">Poseidon CAE Inc.</p>
+                <p class="date">Jan 2020 - Mar 2024</p>
+                <p>Developed mathematical optimization software (C++), built CAE cloud infrastructure with Docker/Kubernetes, validated GPU/ML environments.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>IT Engineer</h4>
+                <p class="company">Flow Science Japan Inc.</p>
+                <p class="date">Apr 2018 - Dec 2019</p>
+                <p>CAE software development (C++/Fortran), network infrastructure design and management.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="section-header">
+            <h2>Certifications & Achievements</h2>
+            <p>Professional certifications in quantum computing and AI/ML</p>
+        </div>
+        <div class="certs-grid fade-in">
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM Qiskit Advocate</h4>
+                    <p>Recognized Quantum Computing Community Expert (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fas fa-trophy"></i></div>
+                <div class="cert-info">
+                    <h4>Yale Peaked Hackathon 2026 &mdash; #13 / 550</h4>
+                    <p>BlueQubit &middot; score 450 (1st-tier) &middot; up to 69 qubits, MPS marginal attack (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fas fa-trophy"></i></div>
+                <div class="cert-info">
+                    <h4>Q-volution Hackathon 3rd Place</h4>
+                    <p>Girls In Quantum - Track B (Quandela) (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fas fa-trophy"></i></div>
+                <div class="cert-info">
+                    <h4>QPoland Global Hackathon 2025</h4>
+                    <p>QML Track Runner-Up (500+ participants)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="cert-info">
+                    <h4>MIT xPRO</h4>
+                    <p>Quantum Computing Fundamentals (2024)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-university"></i></div>
+                <div class="cert-info">
+                    <h4>TUDelft (edX)</h4>
+                    <p>Quantum Computing & Quantum Internet</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-university"></i></div>
+                <div class="cert-info">
+                    <h4>TUDelft (edX)</h4>
+                    <p>Quantum Computing with Semiconductor</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM Quantum (Coursera)</h4>
+                    <p>Fundamentals of Quantum Algorithms (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM Quantum (Coursera)</h4>
+                    <p>Practical Intro to Quantum-Safe Cryptography (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM Quantum (Coursera)</h4>
+                    <p>General Formulation of Quantum Information (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM Quantum (Coursera)</h4>
+                    <p>Foundations of Quantum Error Correction (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM (Coursera)</h4>
+                    <p>AI Engineering Professional Certificate</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
+                    <h4>IBM (Coursera)</h4>
+                    <p>Full Stack Software Developer</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                <div class="cert-info">
+                    <h4>Coursera</h4>
+                    <p>Generative AI Engineering with LLMs</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-atom"></i></div>
+                <div class="cert-info">
+                    <h4>Coursera</h4>
+                    <p>Introduction to Quantum Information</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware">
+        <div class="section-header">
+            <h2>Computational Resources</h2>
+            <p>High-performance workstation for large-scale quantum simulations</p>
+        </div>
+        <div class="hardware-card fade-in">
+            <div class="hardware-icon"><i class="fas fa-server"></i></div>
+            <h3>NVIDIA RTX 6000 PRO Blackwell</h3>
+            <p>Optimized for cuQuantum simulations and GPU-accelerated QML training</p>
+            <div class="hardware-specs">
+                <div class="spec">
+                    <div class="spec-value">96GB</div>
+                    <div class="spec-label">VRAM</div>
+                </div>
+                <div class="spec">
+                    <div class="spec-value">128GB</div>
+                    <div class="spec-label">System RAM</div>
+                </div>
+                <div class="spec">
+                    <div class="spec-value">CUDA 13</div>
+                    <div class="spec-label">Compute</div>
+                </div>
+                <div class="spec">
+                    <div class="spec-value">Alma 9</div>
+                    <div class="spec-label">Linux</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2>Let's Connect</h2>
+            <p>Open to contract R&amp;D, PoC development &amp; advisory — PQC migration, MPC/FHE, and QML. Book a call or reach out.</p>
+        </div>
+        <div class="contact-buttons">
+            <a href="https://cal.com/daemons/discovery-call-trial-20min" class="btn btn-primary" target="_blank" rel="noopener">
+                <i class="fas fa-calendar-check"></i> Book a call
+            </a>
+            <a href="https://github.com/thedaemon-wizard" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/amon-koike-826013300/" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Amon | Independent Quantum Research Engineer | Saitama, Japan</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+            Built with <i class="fas fa-heart" style="color: #ef4444;"></i> for the quantum community
+        </p>
+    </footer>
+
+    <script>
+      // Smooth scroll for in-page anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = this.getAttribute('href');
+          if (id.length > 1) {
+            var el = document.querySelector(id);
+            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+          }
+        });
+      });
+      // Mobile menu toggle (inline style overrides the media-query display:none)
+      var mm = document.querySelector('.mobile-menu');
+      var nl = document.querySelector('.nav-links');
+      if (mm && nl) {
+        mm.addEventListener('click', function () {
+          var open = nl.style.display === 'flex';
+          nl.style.display = open ? 'none' : 'flex';
+          nl.style.flexDirection = 'column';
+        });
+        nl.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            if (window.innerWidth <= 768) { nl.style.display = 'none'; }
+          });
+        });
+      }
+      // Fade-in reveal on scroll
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(function (el) { io.observe(el); });
+    </script>
+</body>
+</html>
