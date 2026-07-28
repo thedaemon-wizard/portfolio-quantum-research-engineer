@@ -330,7 +330,7 @@
             </div>
             <div class="hero-badge" style="animation-delay: 0.5s;">
                 <i class="fas fa-trophy"></i>
-                Yale Peaked Hackathon 2026 #13/550 | QPoland 2025 QML Runner-Up | Q-volution 3rd Place
+                unitaryHACK 2026 &mdash; NVIDIA CUDA-Q &amp; QuEST PRs merged | Yale Peaked Hackathon 2026 #13/550 | QPoland 2025 QML Runner-Up | Q-volution 3rd Place
             </div>
             <h1>Independent Quantum Research Engineer</h1>
             <p class="hero-subtitle">Post-Quantum Crypto (PQC/QKD) · QML &amp; Tensor Networks · crypto-agile, quantum-safe PoCs &amp; tools · IBM Qiskit Advocate</p>
@@ -481,6 +481,36 @@
                     <div class="project-metric">
                         <i class="fas fa-medal"></i>
                         Flagship | 5 use cases | 116 tests | <a href="https://qsmpc-qkd-qhe-ai-hybrid.daemons.jp/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Live demo &#9654;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(118, 185, 0, 0.18) 0%, rgba(59, 130, 246, 0.12) 100%);">
+                    <h3><i class="fab fa-github"></i> unitaryHACK 2026 &mdash; Merged PRs to NVIDIA CUDA-Q &amp; QuEST</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Jun 2026 | Bounties awarded (2 issues, 2 projects)</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">MLIR / C++</span>
+                        <span class="tech-badge">Quantum Shannon Decomposition</span>
+                        <span class="tech-badge">CUDA 13</span>
+                        <span class="tech-badge">Thrust</span>
+                        <span class="tech-badge">Nsight Systems</span>
+                        <span class="tech-badge">Blackwell sm_120</span>
+                    </div>
+                    <p class="project-description">
+                        Upstream contributions to two of the most widely used quantum simulation stacks &mdash; NVIDIA's CUDA-Q compiler and the QuEST simulator &mdash; both reviewed by maintainers, merged, and awarded unitaryHACK bounties.
+                    </p>
+                    <ul class="project-highlights">
+                        <li><strong>CUDA-Q (PR #4693 &rarr; issue #2242):</strong> recursive Quantum Shannon Decomposition extending the unitary-synthesis pass from 2-qubit to 3&ndash;5-qubit custom unitaries (incl. 4q cccx / 5q c4x)</li>
+                        <li><strong>CUDA-Q follow-up (PR #4751):</strong> re-drove the pass on MLIR dialect conversion (ConversionTarget + applyPartialConversion + OpConversionPattern) &mdash; emitted circuit unchanged, all FileCheck/CircuitCheck tests passing</li>
+                        <li><strong>QuEST (PR #783 &rarr; issue #749):</strong> profiled the Thrust GPU backend with Nsight and removed the per-call host&rarr;device qubit-list allocation (bitmask reformulation + List64-by-value) &mdash; <strong>cudaMalloc/cudaFree &minus;66%, cudaMemcpyAsync &minus;67%, projector 1.8&ndash;4.3&times; faster</strong></li>
+                        <li>Validated on real hardware (RTX PRO 6000 Blackwell, CUDA 13.0, sm_120) &mdash; 57,146 upstream assertions passing across CPU / CPU+OpenMP / GPU / GPU+OpenMP builds</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-code-branch"></i>
+                        2 merged PRs | NVIDIA CUDA-Q &amp; QuEST | <a href="https://unitaryhack.dev/hackers/thedaemon-wizard/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">unitaryHACK profile &#9654;</a>
                     </div>
                 </div>
             </div>
@@ -683,7 +713,7 @@
                 <h4>Independent Quantum Research Engineer</h4>
                 <p class="company">Self-employed</p>
                 <p class="date">2026 - Present</p>
-                <p>Building crypto-agile, quantum-safe research PoCs and tools. Flagship: QSMPC·QKD·QHE·AI — a browser-runnable quantum-safe hybrid orchestration layer (QKD → QSMPC → QHE/FHE → privacy-preserving AI) across 5 industry use cases; plus a PQC-QKD hybrid security layer. Available for contract R&D, PoC development & advisory (PQC migration, MPC/FHE, QML).</p>
+                <p>Registered sole proprietor in Japan (filed 1 Aug 2026), working remote-first with overseas collaborators. Building crypto-agile, quantum-safe research PoCs and tools. Flagship: QSMPC·QKD·QHE·AI — a browser-runnable quantum-safe hybrid orchestration layer (QKD → QSMPC → QHE/FHE → privacy-preserving AI) across 5 industry use cases; plus a PQC-QKD hybrid security layer. Available for contract R&D, PoC development & advisory (PQC migration, MPC/FHE, QML).</p>
             </div>
             <div class="timeline-item">
                 <h4>Quantum Research Engineer</h4>
@@ -717,6 +747,13 @@
                 <div class="cert-info">
                     <h4>IBM Qiskit Advocate</h4>
                     <p>Recognized Quantum Computing Community Expert (2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fab fa-github"></i></div>
+                <div class="cert-info">
+                    <h4>unitaryHACK 2026 &mdash; Bounties Awarded</h4>
+                    <p>2 PRs merged upstream: NVIDIA CUDA-Q (3&ndash;5-qubit unitary synthesis, QSD) &amp; QuEST (Thrust GPU alloc removal) (Jun 2026)</p>
                 </div>
             </div>
             <div class="cert-card">
