@@ -315,6 +315,7 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -455,6 +456,65 @@
             <p>Cutting-edge quantum computing projects with real-world applications</p>
         </div>
         <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(139, 92, 246, 0.12) 100%);">
+                    <h3>&#x1F30A; QAPINN for CFD &mdash; When, Why and How a Quantum Layer Changes PINN Learning</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> 2026 | WISER Summer Program 2026 &mdash; BQP Challenge (individual entry, under review)</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">PennyLane</span>
+                        <span class="tech-badge">PyTorch</span>
+                        <span class="tech-badge">Navier-Stokes</span>
+                        <span class="tech-badge">Fourier analysis</span>
+                        <span class="tech-badge">Barren plateaus</span>
+                        <span class="tech-badge">CUDA 13</span>
+                    </div>
+                    <p class="project-description">
+                        An explanatory study, not a leaderboard entry: three model arms (a 6.7k-parameter PINN, a parameter-matched small PINN, and a QAPINN) trained under identical protocols on four benchmark PDEs, so that quantum effects separate cleanly from parameter-count effects.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Four PDEs: Burgers, heat, Allen&ndash;Cahn, and lid-driven cavity (steady Navier&ndash;Stokes, stream-function form, Re = 10/50/100)</li>
+                        <li>271-run main study, ~78 GPU-hours, <strong>zero failed runs</strong>; 3 seeds per configuration and 10 seeds for the headline comparison, plus 81 supplementary structural-sweep runs</li>
+                        <li>Judged with paired bootstrap confidence intervals and Wilcoxon tests &mdash; and reported honestly: the parameter-efficiency edge is real but fragile, and <strong>no comparison reaches p &lt; 0.05</strong></li>
+                        <li>Theory grounded in the Schuld&ndash;Sweke&ndash;Meyer correspondence (a Pauli-encoded VQC is a truncated Fourier series), with the predicted spectra verified against the actual circuits in the test suite</li>
+                        <li>Fully reproducible: pinned lockfile, seeded configs, one-command regeneration, pre-built report and slides</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-flask"></i>
+                        271 runs | 4 PDEs | 0 failures | MIT
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(59, 130, 246, 0.12) 100%);">
+                    <h3>&#x1F6E1; QS-Net &mdash; Distribution-Free Coverage Guarantees for Intrusion Detection</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> 2026 | QIntern 2026 &mdash; manuscript in preparation</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">Conformal prediction</span>
+                        <span class="tech-badge">Beta-Binomial</span>
+                        <span class="tech-badge">McNemar + Holm</span>
+                        <span class="tech-badge">pytest</span>
+                    </div>
+                    <p class="project-description">
+                        Responsible for Proposition 3 (conformal coverage) in a collaborative QIntern 2026 project: calibrating the false-alarm rate of an intrusion detector so that it carries a distribution-free, finite-sample upper bound rather than an average-case score.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Split-conformal calibration verified against <strong>exact Beta-Binomial coverage bands</strong> across all five seeds</li>
+                        <li>Significance established with exact McNemar tests under Holm correction</li>
+                        <li>Results frozen with a SHA-256 manifest and 135 pytest cases</li>
+                        <li>Evaluated on CIC-IoT2023; numerical results held until publication</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-check-double"></i>
+                        Formal coverage guarantee | 135 tests
+                    </div>
+                </div>
+            </div>
+
             <div class="project-card fade-in">
                 <div class="project-header" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(16, 185, 129, 0.12) 100%);">
                     <h3>&#x1F310; QSMPC &middot; QKD &middot; QHE &middot; AI &mdash; Quantum-Safe Hybrid Orchestration</h3>
@@ -722,16 +782,38 @@
                 <p>Researched industrial use cases and PoC trends of quantum technologies across CAE, cryptography, materials and construction; authored research reports and technical decks (quantum cryptography × AI, quantum CAE ROI, quantum materials × AI).</p>
             </div>
             <div class="timeline-item">
+                <h4>Independent Quantum Research (self-directed)</h4>
+                <p class="company">Self-directed research</p>
+                <p class="date">Apr 2024 - Mar 2026</p>
+                <p>Full-time transition from classical CAE into quantum computing. Built the research portfolio that this page documents &mdash; GQE-GPT-QPINN (Jan&ndash;Jul 2025), the QML Benchmark Suite (May&ndash;Jun 2025), Ego-QW quantum graph kernels (QPoland Hackathon Runner-Up, Oct 2025), and the PQC-FHE integration platform (from Dec 2025) &mdash; alongside IBM Quantum, MIT xPRO and TU Delft coursework.</p>
+            </div>
+            <div class="timeline-item">
                 <h4>IT Engineer</h4>
                 <p class="company">Poseidon CAE Inc.</p>
                 <p class="date">Jan 2020 - Mar 2024</p>
-                <p>Developed mathematical optimization software (C++), built CAE cloud infrastructure with Docker/Kubernetes, validated GPU/ML environments.</p>
+                <p>CFD/CAE and mathematical-optimization development in C++ &mdash; real-valued genetic algorithms and Levenberg&ndash;Marquardt &mdash; including filling simulation for plastic injection moulding (technical paper submitted to the Japan Society of Polymer Processing). Built CAE cloud infrastructure with Docker/Kubernetes and validated GPU/ML environments.</p>
             </div>
             <div class="timeline-item">
                 <h4>IT Engineer</h4>
                 <p class="company">Flow Science Japan Inc.</p>
                 <p class="date">Apr 2018 - Dec 2019</p>
-                <p>CAE software development (C++/Fortran), network infrastructure design and management.</p>
+                <p>In-house CAE/CFD solver development in C++ and Fortran &mdash; finite-volume discretisation, cell averages and interface fluxes &mdash; with ParaView post-processing; network infrastructure design and management.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="education">
+        <div class="section-header">
+            <h2>Education</h2>
+            <p>Physics foundation underpinning the quantum and numerical work</p>
+        </div>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <h4>B.S. in Physics</h4>
+                <p class="company">Tokyo Denki University &mdash; School of Science and Engineering, Department of Science and Engineering, Physics Course</p>
+                <p class="date">Graduated March 2018</p>
+                <p><strong>Quantum Optical Properties Laboratory.</strong> Undergraduate thesis: <em>&ldquo;Dynamics of pulsed light interacting with multiple two-level systems&rdquo;</em> &mdash; numerical treatment of coherent light&ndash;matter interaction, which is the same quantum-mechanical formalism underlying the variational circuits and tensor-network methods used throughout the projects above.</p>
             </div>
         </div>
     </section>
@@ -898,6 +980,9 @@
             </a>
             <a href="https://github.com/thedaemon-wizard" class="btn btn-secondary" target="_blank" rel="noopener">
                 <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://github.com/sponsors/thedaemon-wizard" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fas fa-heart"></i> Sponsor
             </a>
             <a href="https://www.linkedin.com/in/amon-koike-826013300/" class="btn btn-secondary" target="_blank" rel="noopener">
                 <i class="fab fa-linkedin"></i> LinkedIn
