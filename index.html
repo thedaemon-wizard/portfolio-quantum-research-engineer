@@ -500,12 +500,12 @@
                         <span class="tech-badge">pytest</span>
                     </div>
                     <p class="project-description">
-                        Responsible for Proposition 3 (conformal coverage) in a collaborative QIntern 2026 project: calibrating the false-alarm rate of an intrusion detector so that it carries a distribution-free, finite-sample upper bound rather than an average-case score.
+                        Part of the three-person team that owns Proposition 3 (conformal coverage) in a collaborative QIntern 2026 project, personally responsible for 10 of the 32 delivery days: calibrating the false-alarm rate of an intrusion detector so that it carries a distribution-free, finite-sample upper bound rather than an average-case score. The quantum-side scores currently ride a placeholder fidelity interface, so these figures validate the statistical machinery rather than detection quality &mdash; no quantum advantage is claimed.
                     </p>
                     <ul class="project-highlights">
                         <li>Split-conformal calibration verified against <strong>exact Beta-Binomial coverage bands</strong> across all five seeds</li>
                         <li>Significance established with exact McNemar tests under Holm correction</li>
-                        <li>Results frozen with a SHA-256 manifest and 135 pytest cases</li>
+                        <li>Results frozen across four SHA-256-pinned packages, 182 pytest cases, and an independent re-implementation of every headline number</li>
                         <li>Evaluated on CIC-IoT2023; numerical results held until publication</li>
                     </ul>
                     <div class="project-metric">
@@ -536,11 +536,11 @@
                         <li>5 use cases: finance AML (PSI), healthcare FL, genomics, telecom QML-IDS, satellite QSDC</li>
                         <li>Crypto-agility registry &mdash; swap KEM/QKD/FHE/MPC at runtime (migration = config change)</li>
                         <li>Agentic LLM over a quantum-safe MCP channel; ML-DSA-signed SHAP (EU AI Act Art. 13)</li>
-                        <li>116 tests passing; commercial-OK stack; every claim tied to a primary source</li>
+                        <li>116 tests passing as of Jun 2026 (the suite has since grown; see the repository for the current count); commercial-OK stack; every claim tied to a primary source</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-medal"></i>
-                        Flagship | 5 use cases | 116 tests | <a href="https://qsmpc-qkd-qhe-ai-hybrid.daemons.jp/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Live demo &#9654;</a>
+                        Flagship | 5 use cases | 116 tests (Jun 2026) | <a href="https://qsmpc-qkd-qhe-ai-hybrid.daemons.jp/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Live demo &#9654;</a>
                     </div>
                 </div>
             </div>
@@ -560,17 +560,47 @@
                         <span class="tech-badge">Blackwell sm_120</span>
                     </div>
                     <p class="project-description">
-                        Upstream contributions to two of the most widely used quantum simulation stacks &mdash; NVIDIA's CUDA-Q compiler and the QuEST simulator &mdash; both reviewed by maintainers, merged, and awarded unitaryHACK bounties.
+                        Upstream contributions to two of the most widely used quantum simulation stacks &mdash; NVIDIA's CUDA-Q compiler and the QuEST simulator. Three PRs reviewed by maintainers and merged; two of them closed unitaryHACK bounty issues (#2242 and #749) for $200 total. The third, PR #4751, is a follow-up refactor rather than a bounty.
                     </p>
                     <ul class="project-highlights">
-                        <li><strong>CUDA-Q (PR #4693 &rarr; issue #2242):</strong> recursive Quantum Shannon Decomposition extending the unitary-synthesis pass from 2-qubit to 3&ndash;5-qubit custom unitaries (incl. 4q cccx / 5q c4x)</li>
+                        <li><strong>CUDA-Q (PR #4693 &rarr; issue #2242):</strong> recursive Quantum Shannon Decomposition extending the unitary-synthesis pass from 1-qubit (ZYZ) and 2-qubit (KAK) to 3&ndash;5-qubit custom unitaries (incl. 4q cccx / 5q c4x)</li>
                         <li><strong>CUDA-Q follow-up (PR #4751):</strong> re-drove the pass on MLIR dialect conversion (ConversionTarget + applyPartialConversion + OpConversionPattern) &mdash; emitted circuit unchanged, all FileCheck/CircuitCheck tests passing</li>
-                        <li><strong>QuEST (PR #783 &rarr; issue #749):</strong> profiled the Thrust GPU backend with Nsight and removed the per-call host&rarr;device qubit-list allocation (bitmask reformulation + List64-by-value) &mdash; <strong>cudaMalloc/cudaFree &minus;66%, cudaMemcpyAsync &minus;67%, projector 1.8&ndash;4.3&times; faster</strong></li>
+                        <li><strong>QuEST (PR #783 &rarr; issue #749):</strong> profiled the Thrust GPU backend with Nsight and removed the per-call host&rarr;device qubit-list allocation (bitmask reformulation + List64-by-value) &mdash; <strong>cudaMalloc/cudaFree &minus;66%, cudaMemcpyAsync &minus;67%, projector 1.79&ndash;4.25&times; faster across N=4&ndash;20</strong></li>
                         <li>Validated on real hardware (RTX PRO 6000 Blackwell, CUDA 13.0, sm_120) &mdash; 57,146 upstream assertions passing across CPU / CPU+OpenMP / GPU / GPU+OpenMP builds</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-code-branch"></i>
-                        2 merged PRs | NVIDIA CUDA-Q &amp; QuEST | <a href="https://unitaryhack.dev/hackers/thedaemon-wizard/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">unitaryHACK profile &#9654;</a>
+                        2 bounties, $200 | 3 merged PRs | NVIDIA CUDA-Q &amp; QuEST | <a href="https://unitaryhack.dev/hackers/thedaemon-wizard/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">unitaryHACK profile &#9654;</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(139, 92, 246, 0.12) 100%);">
+                    <h3><i class="fas fa-bug"></i> arnika &mdash; A Fail-Open Bug in an EU QKD Key-Control Daemon</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Aug 2026 | merged upstream</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">Go</span>
+                        <span class="tech-badge">WireGuard</span>
+                        <span class="tech-badge">netlink</span>
+                        <span class="tech-badge">QKD</span>
+                        <span class="tech-badge">EuroQCI / QCI-CAT</span>
+                    </div>
+                    <p class="project-description">
+                        Found and fixed a security defect in arnika, the QKD key-control daemon developed under the EU's EuroQCI programme (QCI-CAT, DIGITAL-2021-QCI-01 no. 101091642). The peer-existence check returned &quot;not found&quot; on the first <em>non-matching</em> peer rather than after finding that none match, so it only ever succeeded when the interface had exactly one peer.
+                    </p>
+                    <ul class="project-highlights">
+                        <li><strong>Why it is a security bug, not a cosmetic one:</strong> on a node with two neighbours no QKD-derived preshared key was installed &mdash; and because WireGuard works perfectly well without one, the tunnel still came up and passed traffic. The post-quantum protection was gone; nothing else was. <code>InvalidateTunnel</code>, the compromise-response path, calls the same function, so it does not fail closed either.</li>
+                        <li><strong>The part worth sharing:</strong> pings kept succeeding in both states. Connectivity says nothing about whether the key landed. Counting PSK installs is what separates them &mdash; 0 installs / 2 lookup errors before, 4 installs / 0 errors after, toggling only the extra-peer setting.</li>
+                        <li><strong>Merged upstream</strong> (PR #42, 24 Aug 2026): maintainer review read &quot;this fixes a real bug in the peer-lookup logic&quot;; seven CI checks passed, including an integration test under Containerlab.</li>
+                        <li>Surfaced while building a three-node trusted-node chain on my own testbed &mdash; the exact topology QCI-CAT's stated goal of &quot;long-distance QKD with secured trusted nodes&quot; requires, since a trusted node has two neighbours by definition.</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-code-branch"></i>
+                        Merged to upstream main | +13 / &minus;3 | 7 CI checks | <a href="https://github.com/arnika-project/arnika/pull/42" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">PR #42 &#9654;</a>
                     </div>
                 </div>
             </div>
@@ -578,7 +608,7 @@
             <div class="project-card fade-in">
                 <div class="project-header" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(59, 130, 246, 0.12) 100%);">
                     <h3><i class="fas fa-trophy" style="color: var(--accent);"></i> Peaked Circuit Sampling</h3>
-                    <span class="project-date"><i class="far fa-calendar"></i> Apr 2026 | Yale Peaked Hackathon #13/550 (score 450 = 1st-tier)</span>
+                    <span class="project-date"><i class="far fa-calendar"></i> Apr 2026 | Yale Peaked Hackathon #13/550 (team score 450)</span>
                 </div>
                 <div class="project-body">
                     <div class="project-tech">
@@ -594,7 +624,7 @@
                         <li>Solved 9/10 peaked-circuit challenges up to 69 qubits</li>
                         <li>MPS-based marginal attack for bitstring recovery</li>
                         <li>ZX-calculus simplification + transpilation pipeline</li>
-                        <li>Ranked #13 / 550 teams (score 450 = top / 1st-tier)</li>
+                        <li>Ranked #13 / 550 teams (team score 450)</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-medal"></i>
@@ -621,7 +651,7 @@
                     </p>
                     <ul class="project-highlights">
                         <li>Residual QRC beat classical baseline (RMSE 0.0432 vs 0.0437)</li>
-                        <li>Test RMSE 0.0088, R&sup2;=0.992 on AMF regulatory data</li>
+                        <li>Test RMSE 0.0089, R&sup2;=0.992 on AMF regulatory data (Belenos QPU noise model)</li>
                         <li>QRC avoids barren plateaus (VQC RMSE 0.19 vs QRC 0.043)</li>
                         <li>QPU noise resilience: Ascella &amp; Belenos noise models</li>
                     </ul>
@@ -842,7 +872,7 @@
                 <div class="cert-icon gold"><i class="fas fa-trophy"></i></div>
                 <div class="cert-info">
                     <h4>Yale Peaked Hackathon 2026 &mdash; #13 / 550</h4>
-                    <p>BlueQubit &middot; score 450 (1st-tier) &middot; up to 69 qubits, MPS marginal attack (2026)</p>
+                    <p>BlueQubit &middot; #13/550, team score 450 &middot; up to 69 qubits, MPS marginal attack (2026)</p>
                 </div>
             </div>
             <div class="cert-card">
