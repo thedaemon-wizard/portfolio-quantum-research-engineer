@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amon | Independent Quantum Research Engineer (PQC/QKD · QML)</title>
-    <meta name="description" content="Independent Quantum Research Engineer & IBM Qiskit Advocate — crypto-agile, quantum-safe PoCs & tools (QSMPC, PQC-QKD, MPC/FHE), QML/QRC and tensor networks. Open to contract R&D & advisory.">
+    <meta name="description" content="Independent Quantum Research Engineer, IBM Certified Qiskit v2.X Developer (Associate) & IBM Qiskit Advocate — crypto-agile, quantum-safe PoCs & tools (QSMPC, PQC-QKD, MPC/FHE), QML/QRC and tensor networks. Open to contract R&D & advisory.">
     <meta name="keywords" content="Quantum Research Engineer, Post-Quantum Cryptography, PQC, QKD, QSMPC, MPC, FHE, crypto-agility, QML, Quantum Machine Learning, Tensor Networks, PennyLane, Qiskit, Qiskit Advocate, Quantum Reservoir Computing">
     <meta property="og:title" content="Amon | Independent Quantum Research Engineer — PQC/QKD, QSMPC, QML">
     <meta property="og:description" content="Crypto-agile, quantum-safe PoCs & tools (QSMPC · PQC-QKD · MPC/FHE), QML/QRC & tensor networks. IBM Qiskit Advocate. Open to contract R&D & advisory.">
@@ -578,8 +578,8 @@
 
             <div class="project-card fade-in">
                 <div class="project-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(139, 92, 246, 0.12) 100%);">
-                    <h3><i class="fas fa-bug"></i> arnika &mdash; A Fail-Open Bug in an EU QKD Key-Control Daemon</h3>
-                    <span class="project-date"><i class="far fa-calendar"></i> Aug 2026 | merged upstream</span>
+                    <h3><i class="fas fa-bug"></i> arnika &mdash; Three Merged Fixes in an EU QKD Key-Control Daemon</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> Aug&ndash;Sep 2026 | 3 PRs merged &amp; credited upstream</span>
                 </div>
                 <div class="project-body">
                     <div class="project-tech">
@@ -590,17 +590,20 @@
                         <span class="tech-badge">EuroQCI / QCI-CAT</span>
                     </div>
                     <p class="project-description">
-                        Found and fixed a security defect in arnika, the QKD key-control daemon developed under the EU's EuroQCI programme (QCI-CAT, DIGITAL-2021-QCI-01 no. 101091642). The peer-existence check returned &quot;not found&quot; on the first <em>non-matching</em> peer rather than after finding that none match, so it only ever succeeded when the interface had exactly one peer.
+                        Three merged fixes in arnika, the QKD key-control daemon developed under the EU's EuroQCI programme (QCI-CAT, DIGITAL-2021-QCI-01 no. 101091642). Two were fail-open defects &mdash; the tunnel came up and carried traffic while the post-quantum protection was silently absent &mdash; and the third was a follow-up the maintainer asked for at review. The upstream README now carries a Live Demo section and an acknowledgement crediting the testbed.
                     </p>
                     <ul class="project-highlights">
                         <li><strong>Why it is a security bug, not a cosmetic one:</strong> on a node with two neighbours no QKD-derived preshared key was installed &mdash; and because WireGuard works perfectly well without one, the tunnel still came up and passed traffic. The post-quantum protection was gone; nothing else was. <code>InvalidateTunnel</code>, the compromise-response path, calls the same function, so it does not fail closed either.</li>
                         <li><strong>The part worth sharing:</strong> pings kept succeeding in both states. Connectivity says nothing about whether the key landed. Counting PSK installs is what separates them &mdash; 0 installs / 2 lookup errors before, 4 installs / 0 errors after, toggling only the extra-peer setting.</li>
                         <li><strong>Merged upstream</strong> (PR #42, 24 Aug 2026): maintainer review read &quot;this fixes a real bug in the peer-lookup logic&quot;; seven CI checks passed, including an integration test under Containerlab.</li>
+                        <li><strong>A second defect, in the KMS reader (PR #44, merged 2 Sep 2026):</strong> the HTTP response body was closed inside the retry loop and read after it. When the key-management server answered non-200 with no transport error, <code>err</code> stayed <code>nil</code> and <code>io.ReadAll</code> ran on a body already closed &mdash; silently desynchronising the preshared key.</li>
+                        <li><strong>The maintainer's review asked for a follow-up</strong> &mdash; keep the observed status code, status code only and never the body, and not the request path because <code>dec_keys</code> carries the key ID in its query string. I took it rather than leaving it to him: <strong>PR #49, opened and merged the same afternoon, about three hours apart.</strong></li>
+                        <li><strong>The upstream README now credits the testbed</strong> &mdash; &quot;Special thanks to Amon Koike for building, hosting and maintaining a live demo page&hellip;, extensive testing of Arnika against real WireGuard and strongSwan deployments, and his collaboration on the Arnika project&quot; &mdash; at the same level as the QCI-CAT programme and AIT Austrian Institute of Technology. <strong>The maintainer wrote and merged that himself; I had not asked for it.</strong></li>
                         <li>Surfaced while building a three-node trusted-node chain on my own testbed &mdash; the exact topology QCI-CAT's stated goal of &quot;long-distance QKD with secured trusted nodes&quot; requires, since a trusted node has two neighbours by definition.</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-code-branch"></i>
-                        Merged to upstream main | +13 / &minus;3 | 7 CI checks | <a href="https://github.com/arnika-project/arnika/pull/42" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">PR #42 &#9654;</a>
+                        3 PRs merged to upstream main | acknowledged in the upstream README | <a href="https://github.com/arnika-project/arnika/pull/42" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">PR #42 &#9654;</a>
                     </div>
                 </div>
             </div>
@@ -857,6 +860,20 @@
             <div class="cert-card">
                 <div class="cert-icon gold"><i class="fab fa-ibm"></i></div>
                 <div class="cert-info">
+                    <h4>IBM Certified &mdash; Quantum Computation using Qiskit v2.X Developer, Associate</h4>
+                    <p>IBM Professional Certification &middot; issued Sep 2026 &middot; exam C1000-179 &middot; credential C9008400 &middot; no expiry &mdash; <a href="https://www.credly.com/badges/0beb5e13-8116-4b3c-9090-85da23ee134d" target="_blank" rel="noopener">verify on Credly &#9654;</a></p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fas fa-code-branch"></i></div>
+                <div class="cert-info">
+                    <h4>arnika (EU EuroQCI / QCI-CAT) &mdash; 3 PRs Merged &amp; Acknowledged</h4>
+                    <p>Two fail-open security fixes and a maintainer-requested follow-up merged into upstream main; credited by name in the project README alongside QCI-CAT and AIT (Aug&ndash;Sep 2026)</p>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon gold"><i class="fab fa-ibm"></i></div>
+                <div class="cert-info">
                     <h4>IBM Qiskit Advocate</h4>
                     <p>Recognized Quantum Computing Community Expert (2026)</p>
                 </div>
@@ -864,8 +881,8 @@
             <div class="cert-card">
                 <div class="cert-icon gold"><i class="fab fa-github"></i></div>
                 <div class="cert-info">
-                    <h4>unitaryHACK 2026 &mdash; Bounties Awarded</h4>
-                    <p>2 PRs merged upstream: NVIDIA CUDA-Q (3&ndash;5-qubit unitary synthesis, QSD) &amp; QuEST (Thrust GPU alloc removal) (Jun 2026)</p>
+                    <h4>unitaryHACK 2026 &mdash; 2 Bounties, $200</h4>
+                    <p>3 PRs merged upstream: NVIDIA CUDA-Q (3&ndash;5-qubit unitary synthesis via QSD; #4693 &amp; follow-up #4751) &amp; QuEST (Thrust GPU alloc removal, #783). Two of the three closed bounty issues (Jun&ndash;Jul 2026)</p>
                 </div>
             </div>
             <div class="cert-card">
