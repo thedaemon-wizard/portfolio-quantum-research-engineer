@@ -530,13 +530,13 @@
                         <span class="tech-badge">MCP</span>
                     </div>
                     <p class="project-description">
-                        A browser-runnable quantum-safe orchestration layer chaining QKD &rarr; QSMPC &rarr; QHE/FHE &rarr; privacy-preserving AI on a PQC-first hybrid, across 5 industry use cases. The public demo runs entirely client-side with real, measured FHE/MPC (zero server compute).
+                        A browser-runnable quantum-safe orchestration layer chaining QKD &rarr; QSMPC &rarr; QHE/FHE &rarr; privacy-preserving AI on a PQC-first hybrid, across 5 industry use cases. The public demo runs entirely client-side (zero server compute); QKD, QSDC and the QHE comparison are simulated, and the MPC and FHE are classical.
                     </p>
                     <ul class="project-highlights">
                         <li>5 use cases: finance AML (PSI), healthcare FL, genomics, telecom QML-IDS, satellite QSDC</li>
-                        <li>Crypto-agility registry &mdash; swap KEM/QKD/FHE/MPC at runtime (migration = config change)</li>
+                        <li>Crypto-agility registry &mdash; KEM, signature, key source and the simulated QKD protocol swap at run time; FHE and MPC are fixed in the browser demo</li>
                         <li>Agentic LLM over a quantum-safe MCP channel; ML-DSA-signed SHAP (EU AI Act Art. 13)</li>
-                        <li>116 tests passing as of Jun 2026 (the suite has since grown; see the repository for the current count); commercial-OK stack; every claim tied to a primary source</li>
+                        <li>116 tests passing as of Jun 2026 (the suite has since grown; see the repository for the current count); the full local deployment (not the browser demo) uses permissively licensed TenSEAL / OpenFHE / HEonGPU + MPyC; every claim tied to a primary source</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-medal"></i>
@@ -575,6 +575,34 @@
                 </div>
             </div>
 
+
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(59, 130, 246, 0.12) 100%);">
+                    <h3><i class="fas fa-network-wired"></i> PQC + QKD Hybrid Testbed &mdash; Open, Live and Measured</h3>
+                    <span class="project-date"><i class="far fa-calendar"></i> May 2026 - Present | Live testbed (QKD simulated)</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span class="tech-badge">WireGuard + Rosenpass</span>
+                        <span class="tech-badge">strongSwan IKEv2 (RFC 9370, ML-KEM-768)</span>
+                        <span class="tech-badge">RFC 8784 PPK</span>
+                        <span class="tech-badge">arnika</span>
+                        <span class="tech-badge">ETSI GS QKD 014</span>
+                    </div>
+                    <p class="project-description">
+                        A public PQC + QKD testbed: WireGuard with Rosenpass, and strongSwan IKEv2 with ML-KEM-768 and a post-quantum preshared key, with keys from arnika. The VPN software, the post-quantum key exchanges and the key derivation run for real; the QKD layer is simulated. Own code under Apache-2.0; NOTICE lists the submodules&rsquo; licences.
+                    </p>
+                    <ul class="project-highlights">
+                        <li><strong>Protocol Lab:</strong> trusted-node key relay simulated in the browser over five networks described in four journal papers and a preprint. Each tick plays back in order, so a key can be watched crossing each hop under that hop&rsquo;s pad and appearing in the clear only at the node that relays it. Reported values and model values are kept apart, each with its source.</li>
+                        <li><strong>QKD protocols compared:</strong> one idealised round of BB84, BBM92 or MDI-QKD at a time, with asymptotic key-rate curves from the cited papers&rsquo; formulas &mdash; a model, not a measurement, not a finite-key bound and not a ranking of protocols or products.</li>
+                        <li><strong>Measured before and after an open upstream pull request:</strong> PPK rotation failures on the strongSwan lane before and after arnika PR #51, with the numbers published on the pull request on 12 October 2026.</li>
+                    </ul>
+                    <div class="project-metric">
+                        <i class="fas fa-flask"></i>
+                        Running in public | QKD simulated | <a href="https://pqc-qkd-hybrid.daemons.jp/protocol-lab" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Protocol Lab &#9654;</a>
+                    </div>
+                </div>
+            </div>
 
             <div class="project-card fade-in">
                 <div class="project-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(139, 92, 246, 0.12) 100%);">
