@@ -548,7 +548,7 @@
             <div class="project-card fade-in">
                 <div class="project-header" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(118, 185, 0, 0.12) 100%);">
                     <h3><i class="fab fa-github"></i> IETF 127 Hackathon &mdash; PQC Certificates Provider Merged</h3>
-                    <span class="project-date"><i class="far fa-calendar"></i> Nov 2026 | Remote, first IETF Hackathon | 2 PRs merged</span>
+                    <span class="project-date"><i class="far fa-calendar"></i> Nov 2026 | Remote, first IETF Hackathon | 4 PRs merged</span>
                 </div>
                 <div class="project-body">
                     <div class="project-tech">
@@ -563,13 +563,13 @@
                         A provider for the IETF Hackathon PQC certificates project, which checks whether post-quantum X.509 certificates made with different libraries work together: an independent R5 verifier in JavaScript and 54 test files (ML-DSA, ML-KEM and SLH-DSA certificates and keys). Test tooling, not a validated cryptographic module.
                     </p>
                     <ul class="project-highlights">
-                        <li><strong>Merged (PR #342, PR #350, PR #353):</strong> the provider, the verification of another producer&rsquo;s R5 zip, and a pkilint column for all R5 certificates in the automated results</li>
+                        <li><strong>Merged (PR #342, PR #350, PR #353, PR #361):</strong> the provider, the verification of two more producers&rsquo; R5 zips, and a pkilint column for all R5 certificates in the automated results</li>
                         <li>The test files pass the project&rsquo;s OpenSSL CI script, and <code>openssl verify -x509_strict</code> and pkilint 0.13.4 (run locally) report no errors or warnings</li>
                         <li>At the 14 Nov 2026 master, across the other producers&rsquo; 22 R5 zips (19 with these algorithms): 752 rows, 748 agreeing with the other verifiers&rsquo; majority; each of the 2 differences and 2 ties has its reason in the logs</li>
                     </ul>
                     <div class="project-metric">
                         <i class="fas fa-code-branch"></i>
-                        2 merged PRs | Apache-2.0 | <a href="https://github.com/IETF-Hackathon/pqc-certificates/tree/master/providers/noble-post-quantum" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Provider on GitHub &#9654;</a>
+                        4 merged PRs | Apache-2.0 | <a href="https://github.com/IETF-Hackathon/pqc-certificates/tree/master/providers/noble-post-quantum" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Provider on GitHub &#9654;</a>
                     </div>
                 </div>
             </div>
@@ -939,7 +939,7 @@
                 <div class="cert-icon gold"><i class="fas fa-code-branch"></i></div>
                 <div class="cert-info">
                     <h4>IETF 127 Hackathon &mdash; PQC Certificates Provider Merged</h4>
-                    <p>Remote, first IETF Hackathon (Nov 2026) &middot; JavaScript R5 verifier and 54 test files merged into the PQC certificates project (PRs #342, #350, #353) &middot; at the 14 Nov master, 748 of 752 cross-check rows agree with the other verifiers&rsquo; majority</p>
+                    <p>Remote, first IETF Hackathon (Nov 2026) &middot; JavaScript R5 verifier and 54 test files merged into the PQC certificates project (PRs #342, #350, #353, #361) &middot; at the 14 Nov master, 748 of 752 cross-check rows agree with the other verifiers&rsquo; majority</p>
                 </div>
             </div>
             <div class="cert-card">
